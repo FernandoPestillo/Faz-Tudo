@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 import os
 import requests
 import json
@@ -8,7 +9,7 @@ from keep_alive import keep_alive
 
 client = discord.Client()
 
-palavra_chave = ["bot", "robozin","zezin","faz tudo","Faz tudo"]
+palavra_chave = ["bot", "robozin","zezin","faz tudo","Faz tudo","fdp"]
 
 starter_respostas = [
   "Opa",
@@ -48,6 +49,12 @@ async def on_message(message):
   if msg.startswith('$oi'):
     await message.channel.send("Teu pai tem boi?")
 
+  if msg.startswith('$henrique'):
+    await message.channel.send("paizão")
+
+  if msg.startswith('$jao'):
+    await message.channel.send("Confia")
+
   if db["responding"]:
     options = starter_respostas
     if "respostas" in db.keys():
@@ -84,6 +91,7 @@ async def on_message(message):
     else:
       db["responding"] = False
       await message.channel.send("Pai tá off.")
+
 
 keep_alive()
 client.run(os.environ['TOKEN'])
